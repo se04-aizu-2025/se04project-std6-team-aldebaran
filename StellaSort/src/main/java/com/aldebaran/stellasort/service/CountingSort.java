@@ -11,6 +11,7 @@ public class CountingSort {
 
         int max = list.getFirst();
         for (int i : list) {
+            if (i < 0) throw new IllegalArgumentException("CountingSort only supports non-negative integers: " + i + " is not a valid input");
             if (i > max) {
                 max = i;
             }
