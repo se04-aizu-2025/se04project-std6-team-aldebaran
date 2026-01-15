@@ -1,4 +1,4 @@
-package com.aldebaran.stellasort;
+package com.aldebaran.stellasort.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

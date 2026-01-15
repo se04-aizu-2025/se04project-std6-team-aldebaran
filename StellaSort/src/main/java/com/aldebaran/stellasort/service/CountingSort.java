@@ -1,4 +1,4 @@
-package com.aldebaran.stellasort;
+package com.aldebaran.stellasort.service;
 
 import java.util.ArrayList;
 import java.util.List;
