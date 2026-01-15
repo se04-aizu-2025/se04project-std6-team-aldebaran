@@ -12,4 +12,8 @@ module com.aldebaran.stellasort {
 
     opens com.aldebaran.stellasort to javafx.fxml;
     exports com.aldebaran.stellasort;
+    exports com.aldebaran.stellasort.controller;
+    opens com.aldebaran.stellasort.controller to javafx.fxml;
+    exports com.aldebaran.stellasort.service;
+    opens com.aldebaran.stellasort.service to javafx.fxml;
 }
