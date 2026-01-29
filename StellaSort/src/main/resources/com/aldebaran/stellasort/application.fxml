@@ -32,22 +32,22 @@
             </Tab>
             <Tab text="Bubble Sort">
                 <content>
-                    <fx:include source="bubble-sort.fxml" />
+                    <fx:include source="sort-tab.fxml" />
                 </content>
             </Tab>
             <Tab text="Counting Sort">
                 <content>
-                    <fx:include source="counting-sort.fxml" />
+                    <fx:include source="sort-tab.fxml" />
                 </content>
             </Tab>
             <Tab text="Heap Sort">
                 <content>
-                    <fx:include source="heap-sort.fxml" />
+                    <fx:include source="sort-tab.fxml" />
                 </content>
             </Tab>
             <Tab text="Quick Sort">
                 <content>
-                    <fx:include source="quick-sort.fxml" />
+                    <fx:include source="sort-tab.fxml" />
                 </content>
             </Tab>
         </tabs>
