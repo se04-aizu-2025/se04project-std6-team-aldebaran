@@ -10,6 +10,7 @@ module com.aldebaran.stellasort {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires javafx.graphics;
+    requires annotations;
 
     opens com.aldebaran.stellasort to javafx.fxml;
     exports com.aldebaran.stellasort;
