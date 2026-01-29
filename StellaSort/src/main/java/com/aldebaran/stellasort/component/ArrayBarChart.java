@@ -14,15 +14,16 @@ public class ArrayBarChart {
         @Nullable String getStyleClass(int index);
     }
     public static BarCssRule NO_RULE = (i) -> null;
+    private static final String DEFAULT_CSS_FILE = "/com/aldebaran/stellasort/array-bar-chart.css";
 
-    private URL barChartCss;
     private final BarChart<String, Number> barChart;
 
     public ArrayBarChart(BarChart<String, Number> barChart) {
         this.barChart = barChart;
         barChart.setAnimated(false);
         try {
-            barChartCss = getClass().getResource("/com/aldebaran/stellasort/array-bar-chart.css");
+            URL barChartCss = getClass().getResource(DEFAULT_CSS_FILE);
+            assert barChartCss != null;
             barChart.getStylesheets().add(barChartCss.toExternalForm());
         } catch (NullPointerException e) {
             System.out.println("Bar chart CSS does not exists.");
