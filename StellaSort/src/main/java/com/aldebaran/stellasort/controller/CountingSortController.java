@@ -4,12 +4,14 @@ import com.aldebaran.stellasort.animation.ArrayBarChartAnimator;
 import com.aldebaran.stellasort.component.ArrayBarChart;
 import com.aldebaran.stellasort.component.ArrayDisplay;
 import com.aldebaran.stellasort.component.InputArray;
+import com.aldebaran.stellasort.component.PlayButton;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ public class CountingSortController {
      * The text field displays the input array
      */
     @FXML private TextArea inputArrayTextArea;
-    @FXML private Label inputArrayErrorMessageLabel;
+    @FXML private Text inputArrayErrorMessageLabel;
     @FXML private Button inputArrayButton; // disabled until input is valid
 
     private InputArray inputArray;

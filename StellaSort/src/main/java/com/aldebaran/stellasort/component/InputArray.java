@@ -3,6 +3,7 @@ package com.aldebaran.stellasort.component;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -16,19 +17,19 @@ public class InputArray {
     }
 
     private final TextArea textArea;
-    private final Label errorMessageLabel;
+    private final Text errorMessageText;
     private final Button inputButton;
 
     private final InputValidationRule validationRule;
 
-    public InputArray(TextArea textArea, Label errorMessageLabel, Button inputButton, InputValidationRule validationRule) {
+    public InputArray(TextArea textArea, Text errorMessageText, Button inputButton, InputValidationRule validationRule) {
         this.textArea = textArea;
-        this.errorMessageLabel = errorMessageLabel;
+        this.errorMessageText = errorMessageText;
         this.inputButton = inputButton;
         this.validationRule = validationRule;
 
         // Set up the initial state
-        errorMessageLabel.setVisible(false);
+        errorMessageText.setVisible(false);
 
         // Set up a focus listener to validate input on focus lost
         textArea.focusedProperty().addListener((observable, oldValue, newValue) -> validateTextAreaInput());
@@ -75,14 +76,14 @@ public class InputArray {
         String errorMessage = validate(new java.util.ArrayList<>(List.of()));
         if (errorMessage != null) {
             inputButton.setDisable(true);
-            errorMessageLabel.setVisible(true);
-            errorMessageLabel.setText(errorMessage);
+            errorMessageText.setVisible(true);
+            errorMessageText.setText(errorMessage);
             return false;
         }
 
         inputButton.setDisable(false);
-        errorMessageLabel.setVisible(false);
-        errorMessageLabel.setText("");
+        errorMessageText.setVisible(false);
+        errorMessageText.setText("");
         return true;
     }
 
