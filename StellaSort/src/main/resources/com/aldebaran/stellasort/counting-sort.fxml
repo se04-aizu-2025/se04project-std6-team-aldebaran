@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aldebaran.stellasort.controller.CountingSortController">
    <children>
@@ -18,5 +24,35 @@
       </BarChart>
       <Button layoutX="77.0" layoutY="49.0" mnemonicParsing="false" onAction="#onPlaySortButtonClick" text="Sort" />
       <Button layoutX="135.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSetInputButtonClick" text="SetInput" />
+      <Accordion layoutX="257.0" layoutY="25.0" />
+      <FlowPane fx:id="inputArrayFlowPane" layoutX="280.0" layoutY="25.0" prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 10;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" stroke="BLACK" strokeType="INSIDE" width="36.0">
+               <FlowPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </FlowPane.margin>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="36.0">
+               <FlowPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </FlowPane.margin>
+            </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="46.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="82.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="118.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="154.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="10.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="46.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="82.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="118.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="154.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="10.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="46.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="82.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+         </children>
+      </FlowPane>
+      <TextArea fx:id="inputArrayTextArea" layoutX="90.0" layoutY="125.0" prefHeight="200.0" prefWidth="200.0" text="This is a text area. This is al test of the wrapping." wrapText="true" />
+      <Button fx:id="inputArrayButton" layoutX="213.0" layoutY="335.0" mnemonicParsing="false" onAction="#onInputArrayButtonClicked" text="Input Array" />
+      <Label fx:id="inputArrayErrorMessageLabel" layoutX="90.0" layoutY="340.0" text="Label" />
    </children>
 </AnchorPane>

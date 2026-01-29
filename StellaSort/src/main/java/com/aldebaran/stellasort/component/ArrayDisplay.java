@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: maybe rewrite to display empty elements?
 public class ArrayDisplay {
     @FunctionalInterface
     public interface ArrayElementCssRule {
