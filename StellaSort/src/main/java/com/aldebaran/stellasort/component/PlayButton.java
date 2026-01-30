@@ -18,6 +18,7 @@ public class PlayButton {
     private final ImageView buttonIcon;
 
     private boolean isPlaying = false;
+    public boolean isPlaying() { return isPlaying; }
 
     public PlayButton(Button button) {
         this.button = button;
