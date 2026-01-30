@@ -63,13 +63,13 @@ public class SortTabController {
 				queue.play();
 				queue.setOnFinished(e -> {
 				throughLabel.setText("Sort complete.");
-				playButton.togglePlayPause();
 				StringBuilder sb = new StringBuilder();
 				for (int i = 0; i < array.length; i++) {
 					sb.append(array[i]);
 					if (i < array.length - 1) sb.append(", ");
 				}
 				inputArea.setText(sb.toString());
+				playButton.togglePlayPause();
 				});
 			});
 		}
