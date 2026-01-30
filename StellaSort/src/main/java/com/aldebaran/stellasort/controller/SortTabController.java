@@ -91,7 +91,7 @@ public class SortTabController {
         this.algorithm = algorithm;
 		switch (algorithm) {
 					case BUBBLE -> infoLabel.setText("BubbleSort is a simple algorithm that compares neighboring elements to decide a swap, looping through the array until it no longer needs to swap anything. It has a time complexity of O(n^2)");
-					case QUICK -> infoLabel.setText("QuickSort");
+					case QUICK -> infoLabel.setText("QuickSort is a fast sorting algorithim, using divide-and-conquer strategy to sort an array by partitioning into sub arrays. It is efficient for large datasets, and has a time complexity of O(n log n)");
 					case COUNTING -> {}
 					case HEAP -> {}
 				}
