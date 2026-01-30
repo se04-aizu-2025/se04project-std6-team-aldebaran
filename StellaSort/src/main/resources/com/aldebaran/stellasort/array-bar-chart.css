@@ -1,0 +1,21 @@
+.default-color0.chart-bar, .default-color1.chart-bar {
+    -fx-bar-fill: grey;
+}
+
+.chart-bar.bar-highlight {
+    -fx-bar-fill: red;
+}
+
+.default-color0.chart-bar.bar-highlight,
+.default-color1.chart-bar.bar-highlight {
+    -fx-bar-fill: red;
+}
+
+.chart-bar.bar-test {
+    -fx-bar-fill: yellow;
+}
+
+.default-color0.chart-bar.bar-test,
+.default-color1.chart-bar.bar-test {
+    -fx-bar-fill: yellow;
+}

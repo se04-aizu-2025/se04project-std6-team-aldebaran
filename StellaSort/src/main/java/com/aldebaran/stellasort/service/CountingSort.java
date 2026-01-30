@@ -1,5 +1,7 @@
 package com.aldebaran.stellasort.service;
 
+import javafx.animation.Animation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,28 +43,58 @@ public class CountingSort {
         return new ArrayList<>(List.of(resultsArray));
     }
 
-    // test driver
-    // takes an array of positive integers as command-line arguments
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
+    @FunctionalInterface
+    public interface OnIncrementCountingArray {
+        List<Animation> createAnimations(int index, int oldValue);
+    }
 
-        for (String arg : args) {
-            int num;
+    @FunctionalInterface
+    public interface OnDecrementCountingArray {
+        List<Animation> createAnimations(int index, int oldValue);
+    }
 
-            try { num = Integer.parseInt(arg); }
-            catch (NumberFormatException e) {
-                System.out.println("Argument is not an integer: " + arg);
-                throw e;
-            }
-
-            if (num < 0) {
-                System.out.println("Argument is negative: " + arg);
-                throw new IllegalArgumentException();
-            }
-
-            list.add(num);
+    public static List<Animation> getSortAnimations(List<Integer> list, int max, OnIncrementCountingArray incrementCountingArrayAnimation, OnDecrementCountingArray decrementCountingArrayAnimation) {
+        if (list == null || list.isEmpty()) {
+            return new ArrayList<>();
         }
 
-        System.out.println(sort(list));
+        List<Animation> animations = new ArrayList<>();
+
+        // initialize the count array
+        int[] count = new int[max + 1];
+        int[] offsetCount = new int[max + 1];
+
+        // count occurrences
+        for (int i : list) {
+            count[i]++;
+            offsetCount[i] = count[i];
+
+            animations.addAll(incrementCountingArrayAnimation.createAnimations(i, count[i]-1));
+            System.out.println("Play animation to transition to count[" + i + "] = " + count[i] + "");
+        }
+
+        // offset the count array
+        for (int i = 1; i <= max; i++) {
+            offsetCount[i] += offsetCount[i - 1];
+        }
+
+        Integer[] resultsArray = new Integer[list.size()];
+
+        for (int i = list.size() - 1; i >= 0; i--) {
+            int val = list.get(i);
+            resultsArray[offsetCount[val] - 1] = val;
+
+            count[val]--;
+            offsetCount[val]--;
+
+            if (count[val] >= 0) {
+                System.out.println("Play animation to transition to count[" + val + "] = " + count[val] + "");
+                animations.addAll(decrementCountingArrayAnimation.createAnimations(val, count[val]+1));
+            }
+
+            System.out.println("count[" + val + "] = " + count[val] + "");
+        }
+
+        return animations;
     }
 }
