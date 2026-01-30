@@ -1,0 +1,24 @@
+.array-element {
+    /*-fx-pref-width: 40px; TODO: should set a min-width sometime */
+    -fx-min-width: 20px;
+    -fx-max-height: 20px;
+    -fx-padding: 3px;
+    -fx-roundness: 5px;
+
+    -fx-border-color: black;
+    -fx-border-style: solid inside;
+    -fx-border-width: 1px;
+
+    -fx-font-size: 10px;
+    -fx-alignment: center;
+
+    -fx-background-color: white;
+}
+
+.array-element-highlighted {
+    -fx-background-color: lightblue;
+}
+
+.array-element-disabled {
+    -fx-background-color: lightgrey;
+}

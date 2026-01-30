@@ -6,6 +6,7 @@ import javafx.scene.chart.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 
 public class ArrayBarChart {
@@ -14,15 +15,22 @@ public class ArrayBarChart {
         @Nullable String getStyleClass(int index);
     }
     public static BarCssRule NO_RULE = (i) -> null;
+    private static final String DEFAULT_CSS_FILE = "/com/aldebaran/stellasort/array-bar-chart.css";
 
-    private URL barChartCss;
     private final BarChart<String, Number> barChart;
+
+    public Integer getDatasetSize() {
+        return barChart.getData().getFirst().getData().size();
+    }
 
     public ArrayBarChart(BarChart<String, Number> barChart) {
         this.barChart = barChart;
         barChart.setAnimated(false);
+        barChart.setLegendVisible(false);
+        barChart.setBarGap(0.0);
         try {
-            barChartCss = getClass().getResource("/com/aldebaran/stellasort/array-bar-chart.css");
+            URL barChartCss = getClass().getResource(DEFAULT_CSS_FILE);
+            assert barChartCss != null;
             barChart.getStylesheets().add(barChartCss.toExternalForm());
         } catch (NullPointerException e) {
             System.out.println("Bar chart CSS does not exists.");
@@ -31,12 +39,14 @@ public class ArrayBarChart {
 
     public void initializeBarChart() {
         // Set the initial array
-        // TODO: potentially create a way to set the initial y-axis range so that I can have an initially empty bar chart
-        List<Integer> initialArray = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        setBarChart(initialArray, NO_RULE);
+        List<Integer> zeroArray = Collections.nCopies(10, 0);
+        setYBounds(0, 10+1);
+        setBarChart(zeroArray, ArrayBarChart.NO_RULE);
     }
 
     public int getYValueAt(int index) {
+        assert index >= 0;
+        assert index < barChart.getData().getFirst().getData().size();
         return (int) barChart.getData().getFirst().getData().get(index).getYValue();
     }
 
@@ -67,10 +77,10 @@ public class ArrayBarChart {
 
         barChart.getData().add(series);
 
-        Platform.runLater(() -> {
-            barChart.applyCss();
-            barChart.layout();
+        barChart.applyCss();
+        barChart.layout();
 
+        Platform.runLater(() -> {
             for (int i = 0; i < series.getData().size(); i++) {
                 Node node = series.getData().get(i).getNode();
                 if (node == null) continue;
@@ -88,6 +98,8 @@ public class ArrayBarChart {
 
     // TODO: doesn't check if the index or value is valid
     public void setBarValue(int index, int value) {
+        assert index >= 0;
+        assert index < barChart.getData().getFirst().getData().size();
         XYChart.Data<String, Number> bar = barChart.getData().getFirst().getData().get(index);
         // Set the value
         bar.setYValue(value);
@@ -95,12 +107,16 @@ public class ArrayBarChart {
 
     // TODO: doesn't check if the index is valid
     public void addBarStyleClass(int index, String styleClass) {
+        assert index >= 0;
+        assert index < barChart.getData().getFirst().getData().size();
         XYChart.Data<String, Number> bar = barChart.getData().getFirst().getData().get(index);
         // Add the style class
         bar.getNode().getStyleClass().add(styleClass);
     }
 
     public void removeBarStyleClass(int index, String styleClass) {
+        assert index >= 0;
+        assert index < barChart.getData().getFirst().getData().size();
         XYChart.Data<String, Number> bar = barChart.getData().getFirst().getData().get(index);
         // Set the style class
         // Remove only removes the first occurrence, however, due to the way setBar is written, there should always only be one occurrence

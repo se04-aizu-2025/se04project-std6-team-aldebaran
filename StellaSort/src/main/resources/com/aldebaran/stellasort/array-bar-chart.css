@@ -2,12 +2,12 @@
     -fx-bar-fill: grey;
 }
 
-.chart-bar.bar-highlight {
+.chart-bar.bar-highlighted {
     -fx-bar-fill: red;
 }
 
-.default-color0.chart-bar.bar-highlight,
-.default-color1.chart-bar.bar-highlight {
+.default-color0.chart-bar.bar-highlighted,
+.default-color1.chart-bar.bar-highlighted {
     -fx-bar-fill: red;
 }
 

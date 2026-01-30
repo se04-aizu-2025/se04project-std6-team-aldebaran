@@ -11,6 +11,7 @@ module com.aldebaran.stellasort {
     requires eu.hansolo.tilesfx;
     requires javafx.graphics;
     requires annotations;
+    requires java.desktop;
 
     opens com.aldebaran.stellasort to javafx.fxml;
     exports com.aldebaran.stellasort;
