@@ -5,15 +5,13 @@ import javafx.fxml.FXML;
 public class ApplicationController {
 
     @FXML private SortTabController bubbleTabController;
-    @FXML private SortTabController countingTabController;
-    @FXML private SortTabController heapTabController;
+//    @FXML private SortTabController countingTabController;
+//    @FXML private SortTabController heapTabController;
     @FXML private SortTabController quickTabController;
 
     @FXML
     public void initialize() {
         bubbleTabController.setAlgorithm(SortAlgorithm.BUBBLE);
-        countingTabController.setAlgorithm(SortAlgorithm.COUNTING);
-        heapTabController.setAlgorithm(SortAlgorithm.HEAP);
         quickTabController.setAlgorithm(SortAlgorithm.QUICK);
     }
 }
