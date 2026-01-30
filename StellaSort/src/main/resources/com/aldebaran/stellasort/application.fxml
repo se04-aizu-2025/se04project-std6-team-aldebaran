@@ -37,12 +37,12 @@
             </Tab>
             <Tab text="Counting Sort">
                 <content>
-                    <fx:include fx:id="countingTab" source="sort-tab.fxml" />
+                    <fx:include source="counting-sort.fxml" />
                 </content>
             </Tab>
             <Tab text="Heap Sort">
                 <content>
-                    <fx:include fx:id="heapTab" source="sort-tab.fxml" />
+                    <fx:include source="heap-sort.fxml" />
                 </content>
             </Tab>
             <Tab text="Quick Sort">
