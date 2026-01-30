@@ -18,14 +18,14 @@ public class ArrayBarChartAnimator {
 
         KeyFrame highlightBar = new KeyFrame(Duration.millis(200), actionEvent -> {
             barChart.setBarValue(index, oldValue);
-            barChart.addBarStyleClass(index, "bar-highlight");
+            barChart.addBarStyleClass(index, "bar-highlighted");
         });
         KeyFrame incrementValue = new KeyFrame(Duration.millis(700), actionEvent -> {
             barChart.setBarValue(index, newValue);
         });
         KeyFrame resetBar = new KeyFrame(Duration.millis(1000), actionEvent -> {
 //            barChart.setBarValue(index, oldValue);
-            barChart.removeBarStyleClass(index, "bar-highlight");
+            barChart.removeBarStyleClass(index, "bar-highlighted");
         });
 
         timeline.getKeyFrames().add(highlightBar);
