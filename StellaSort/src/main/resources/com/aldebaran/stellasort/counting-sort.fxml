@@ -3,7 +3,6 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -24,10 +23,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aldebaran.stellasort.controller.CountingSortController">
    <children>
-      <Button layoutX="77.0" layoutY="49.0" mnemonicParsing="false" onAction="#onPlaySortButtonClick" text="Sort" />
-      <Button layoutX="135.0" layoutY="49.0" mnemonicParsing="false" onAction="#onSetInputButtonClick" text="SetInput" />
-      <Accordion layoutX="257.0" layoutY="25.0" />
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
             <VBox prefHeight="200.0" prefWidth="100.0">
                 <children>
@@ -42,7 +38,7 @@
               <items>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="inputArrayTextArea" prefHeight="196.0" prefWidth="341.0" text="This is a text area. This is al test of the wrapping." wrapText="true" />
+                        <TextArea fx:id="inputArrayTextArea" prefHeight="196.0" prefWidth="341.0" wrapText="true" />
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <TextFlow prefHeight="170.0" prefWidth="181.0">
@@ -80,7 +76,11 @@
                                             </items>
                                           </ToolBar>
                                           <FlowPane fx:id="inputArrayFlowPane" prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 10;" />
-                                          <Label layoutX="10.0" layoutY="61.0" text="Process" />
+                                          <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+                                             <children>
+                                                <Text fx:id="inputToCountProcessText" fill="#ff3d27" strokeType="OUTSIDE" strokeWidth="0.0" text="Process" />
+                                             </children>
+                                          </TextFlow>
                                           <Label text="Counting Array" />
                                           <BarChart fx:id="barChart" prefHeight="150.0" prefWidth="403.0">
                                              <xAxis>
@@ -90,8 +90,12 @@
                                                 <NumberAxis side="LEFT" />
                                              </yAxis>
                                           </BarChart>
-                                          <Label layoutX="10.0" layoutY="61.0" text="Process" />
-                                          <FlowPane fx:id="inputArrayFlowPane1" layoutX="10.0" layoutY="41.0" prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 10;" />
+                                          <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
+                                             <children>
+                                                <Text fx:id="countToResultProcessText" fill="#ff3d27" strokeType="OUTSIDE" strokeWidth="0.0" text="Process" textAlignment="CENTER" />
+                                             </children>
+                                          </TextFlow>
+                                          <FlowPane fx:id="resultArrayFlowPane" layoutX="10.0" layoutY="41.0" prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 10;" />
                                        </children>
                                     </VBox>
                                 </content>
