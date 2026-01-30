@@ -14,7 +14,7 @@ import com.aldebaran.stellasort.service.SortListener;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import com.aldebaran.stellasort.service.BubbleSort;
-
+import com.aldebaran.stellasort.service.QuickSort;
 
 public class SortTabController {
 
@@ -45,6 +45,13 @@ public class SortTabController {
 			Platform.runLater(() -> {
 				queue.getChildren().add(animator.changeBarValue(i, a, b));
 				queue.getChildren().add(animator.changeBarValue(j, b, a));
+			});
+		}
+		
+		public void onFinished() {
+			Platform.runLater(() -> {
+				queue.setOnFinished(e -> throughLabel.setText("Sort complete."));
+				queue.play();
 			});
 		}
 	};
@@ -110,12 +117,9 @@ public class SortTabController {
 	private void runBubble() {
 		if (array == null || array.length == 0) return;
 
-		statusLabel.setText("Sorting...");
-
 		queue.stop();
 		queue.getChildren().clear();
-		statusLabel.setText("Sorting...");
-
+		throughLabel.setText("Sorting...");
 		Service<Void> service = new Service<>() {
 			@Override
 			protected Task<Void> createTask() {
@@ -131,10 +135,10 @@ public class SortTabController {
 
 		service.setOnSucceeded(e -> {
 			queue.play();
-			statusLabel.setText("Done");
 		});
 
 		service.start();
+		
 	}
 	
 	private void runCounting() {
@@ -147,6 +151,31 @@ public class SortTabController {
 	}
 	
 	private void runQuick() {
+		if (array == null || array.length == 0) return;
+
+		queue.stop();
+		queue.getChildren().clear();
+		throughLabel.setText("Sorting...");
+
+		Service<Void> service = new Service<>() {
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<>() {
+					@Override
+					protected Void call() {
+						QuickSort.sort(array, listener);
+						return null;
+					}
+				};
+			}
+		};
+
+		service.setOnSucceeded(e -> {
+			queue.play();
+		});
+
+		service.start();
+		
 		
 	}
 	
