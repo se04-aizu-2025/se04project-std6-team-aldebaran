@@ -1,5 +1,7 @@
 .array-element {
     /*-fx-pref-width: 40px; TODO: should set a min-width sometime */
+    -fx-min-width: 20px;
+    -fx-max-height: 20px;
     -fx-padding: 3px;
     -fx-roundness: 5px;
 

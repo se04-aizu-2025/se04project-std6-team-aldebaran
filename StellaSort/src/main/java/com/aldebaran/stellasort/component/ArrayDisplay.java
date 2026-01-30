@@ -41,11 +41,11 @@ public class ArrayDisplay {
         labels.clear();
     }
 
-    public void setArray(List<Integer> array, ArrayElementCssRule arrayElementCssRule) {
+    public void setArray(List<String> array, ArrayElementCssRule arrayElementCssRule) {
         clearArray();
 
         for (int i = 0; i < array.size(); i++) {
-            Label label = new Label(Integer.toString(array.get(i)));
+            Label label = new Label(array.get(i));
             labels.add(label);
             flowPane.getChildren().add(label);
 
@@ -66,8 +66,8 @@ public class ArrayDisplay {
 
     //#region Single Element
 
-    public void setElement(int index, int value) {
-        labels.get(index).setText(Integer.toString(value));
+    public void setElement(int index, String value) {
+        labels.get(index).setText(value);
     }
 
     // TODO: probably should have some input validation
