@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aldebaran.stellasort.controller.ApplicationController">
    <children>
@@ -14,20 +17,35 @@
         <tabs>
             <Tab text="Stella Sort">
                <content>
-                  <SplitPane dividerPositions="0.2758333333333333" prefHeight="160.0" prefWidth="200.0">
-                    <items>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <TextFlow prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a cool application which has a working UI." />
-                                 </children>
-                              </TextFlow>
-                           </children>
-                        </VBox>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-image: url(/com/aldebaran/stellasort/images/starry-background.jpg); -fx-background-size: cover; -fx-background-position: center;" />
-                    </items>
-                  </SplitPane>
+				   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+				   <children>
+					<SplitPane dividerPositions="0.3" prefHeight="400.0" prefWidth="600.0">
+						<items>
+							<AnchorPane>
+								<children>
+									<ImageView fx:id="backgroundImage" pickOnBounds="true" preserveRatio="false"
+											   AnchorPane.topAnchor="0.0"
+											   AnchorPane.bottomAnchor="0.0"
+											   AnchorPane.leftAnchor="0.0"
+											   AnchorPane.rightAnchor="0.0">
+										<image>
+											<Image url="@images/starry-background.jpg"/>
+										</image>
+									</ImageView>
+									<Label text="Welcome to Stella Sort!" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white" layoutX="200.0" layoutY="130.0" />
+									<Label text="You may use this program to watch visualizations of several sorting algorithms, and hopefully gain a deeper understanding of how they work."
+										   wrapText="true"
+										   style="-fx-font-size: 14px; -fx-text-fill: red;"
+										   maxWidth="300" 
+										   layoutX="200.0" layoutY="160.0"/>
+								
+								</children>
+							</AnchorPane>
+						</items>
+					</SplitPane>
+				</children>
+			</AnchorPane>
+
                </content>
             </Tab>
             <Tab text="Bubble Sort">
