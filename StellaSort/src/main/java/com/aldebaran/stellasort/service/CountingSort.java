@@ -53,7 +53,32 @@ public class CountingSort {
         List<Animation> createAnimations(int index, int oldValue);
     }
 
-    public static List<Animation> getSortAnimations(List<Integer> list, int max, OnIncrementCountingArray incrementCountingArrayAnimation, OnDecrementCountingArray decrementCountingArrayAnimation) {
+    @FunctionalInterface
+    public interface OnBeforeIncrementCountingArray {
+        List<Animation> createAnimations(int inputIndex, int inputValue);
+    }
+
+    @FunctionalInterface
+    public interface OnBeforeDecrementCountingArray {
+        List<Animation> createAnimations(int inputIndex, int inputValue, int resultIndex, int resultValue, int resultIndexOffset);
+    }
+
+    @FunctionalInterface
+    public interface OnAfterIncrementCountingArray {
+        // index is the result index, offsetCount[val] - 1
+        // index offset is the current offset, offsetCount[val]
+        // value is the value at index, list[index]
+        List<Animation> createAnimations(int index, int indexOffset, int value);
+    }
+
+    public static List<Animation> getSortAnimations(
+            List<Integer> list, int max,
+            OnIncrementCountingArray incrementCountingArrayAnimation,
+            OnDecrementCountingArray decrementCountingArrayAnimation,
+            OnBeforeIncrementCountingArray beforeIncrementCountingArrayAnimation,
+            OnBeforeDecrementCountingArray beforeDecrementCountingAnimation,
+            OnAfterIncrementCountingArray afterIncrementCountingArrayAnimation
+    ) {
         if (list == null || list.isEmpty()) {
             return new ArrayList<>();
         }
@@ -65,12 +90,14 @@ public class CountingSort {
         int[] offsetCount = new int[max + 1];
 
         // count occurrences
-        for (int i : list) {
-            count[i]++;
-            offsetCount[i] = count[i];
+        for (int i = 0; i < list.size(); i++) {
+            int j = list.get(i);
+            count[j]++;
+            offsetCount[j] = count[j];
 
-            animations.addAll(incrementCountingArrayAnimation.createAnimations(i, count[i]-1));
-            System.out.println("Play animation to transition to count[" + i + "] = " + count[i] + "");
+            animations.addAll(beforeIncrementCountingArrayAnimation.createAnimations(i, j));
+            animations.addAll(incrementCountingArrayAnimation.createAnimations(j, count[j]-1));
+            System.out.println("Play animation to transition to count[" + j + "] = " + count[j] + "");
         }
 
         // offset the count array
@@ -84,6 +111,8 @@ public class CountingSort {
             int val = list.get(i);
             resultsArray[offsetCount[val] - 1] = val;
 
+            animations.addAll(beforeDecrementCountingAnimation.createAnimations(i, val, offsetCount[val] - 1, val, offsetCount[val]));
+
             count[val]--;
             offsetCount[val]--;
 
@@ -91,6 +120,8 @@ public class CountingSort {
                 System.out.println("Play animation to transition to count[" + val + "] = " + count[val] + "");
                 animations.addAll(decrementCountingArrayAnimation.createAnimations(val, count[val]+1));
             }
+
+            animations.addAll(afterIncrementCountingArrayAnimation.createAnimations(offsetCount[val], offsetCount[val], val));
 
             System.out.println("count[" + val + "] = " + count[val] + "");
         }
