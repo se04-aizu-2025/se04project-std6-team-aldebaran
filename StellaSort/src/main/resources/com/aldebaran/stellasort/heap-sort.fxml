@@ -1,14 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.aldebaran.stellasort.controller.HeapSortController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aldebaran.stellasort.controller.HeapSortController">
+    <children>
+        <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <TextFlow prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="This is a cool application which has a working UI." />
+                            </children>
+                        </TextFlow>
+                    </children>
+                </VBox>
+                <SplitPane dividerPositions="0.15201005025125627" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="inputArrayTextArea" prefHeight="196.0" prefWidth="341.0" wrapText="true" />
+                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                        <TextFlow prefHeight="170.0" prefWidth="181.0">
+                                            <children>
+                                                <Text fx:id="inputArrayErrorMessageLabel" fill="#ff3d27" strokeType="OUTSIDE" strokeWidth="0.0" text="Input Array Error Messages" wrappingWidth="136.8857421875" />
+                                            </children>
+                                        </TextFlow>
+                                        <Button fx:id="inputArrayButton" mnemonicParsing="false" onAction="#onInputArrayButtonClicked" prefHeight="26.0" prefWidth="163.0" text="Input Array" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="Heap">
+                                    <content>
+                                          <VBox prefHeight="305.0" prefWidth="400.0">
+                                              <children>
+                                                  <ToolBar prefHeight="28.0" prefWidth="458.0">
+                                                      <items>
+                                                          <Button fx:id="playButtonBarChart" mnemonicParsing="false" onAction="#onPlaySortHeap">
+                                                              <font>
+                                                                  <Font size="10.0" />
+                                                              </font>
+                                                              <graphic>
+                                                                  <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                                                      <image>
+                                                                          <Image url="@images/play.png" />
+                                                                      </image>
+                                                                  </ImageView>
+                                                              </graphic>
+                                                          </Button>
+                                                      </items>
+                                                  </ToolBar>
+                                                  <FlowPane fx:id="inputArrayFlowPane" prefHeight="36.0" prefWidth="416.0" style="-fx-padding: 10;" />
+                                                  <TextFlow textAlignment="CENTER" />
+                                    <ScrollPane prefHeight="300.0" prefWidth="400.0">
+                                      <content>
+                                          <Pane fx:id="heapPane" prefHeight="300.0" prefWidth="400.0" />
+                                      </content>
+                                    </ScrollPane>
+                                                  <TextFlow prefHeight="7.0" prefWidth="416.0" textAlignment="CENTER" />
+                                                  <FlowPane fx:id="resultArrayFlowPane" layoutX="10.0" layoutY="41.0" prefHeight="42.0" prefWidth="416.0" style="-fx-padding: 10;" />
+                                              </children>
+                                          </VBox>
+                                    </content>
+                                </Tab>
+                                <Tab text="Nodes">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </items>
+                </SplitPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
