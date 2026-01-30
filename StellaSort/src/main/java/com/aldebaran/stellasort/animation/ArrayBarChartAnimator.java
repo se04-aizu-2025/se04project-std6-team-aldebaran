@@ -16,14 +16,14 @@ public class ArrayBarChartAnimator {
     public Animation changeBarValue(int index, int oldValue, int newValue) {
         Timeline timeline = new Timeline();
 
-        KeyFrame highlightBar = new KeyFrame(Duration.millis(200), actionEvent -> {
+        KeyFrame highlightBar = new KeyFrame(Duration.millis(30), actionEvent -> {
             barChart.setBarValue(index, oldValue);
             barChart.addBarStyleClass(index, "bar-highlighted");
         });
-        KeyFrame incrementValue = new KeyFrame(Duration.millis(700), actionEvent -> {
+        KeyFrame incrementValue = new KeyFrame(Duration.millis(80), actionEvent -> {
             barChart.setBarValue(index, newValue);
         });
-        KeyFrame resetBar = new KeyFrame(Duration.millis(1000), actionEvent -> {
+        KeyFrame resetBar = new KeyFrame(Duration.millis(120), actionEvent -> {
 //            barChart.setBarValue(index, oldValue);
             barChart.removeBarStyleClass(index, "bar-highlighted");
         });

@@ -50,12 +50,13 @@ public class ArrayBarChart {
         return (int) barChart.getData().getFirst().getData().get(index).getYValue();
     }
 
-    public void setYBounds(int min, int max) {
+	public void setYBounds(int min, int max) {
         NumberAxis yAxis = (NumberAxis) barChart.getYAxis();
         yAxis.setAutoRanging(false);
         yAxis.setLowerBound(min);
         yAxis.setUpperBound(max);
     }
+
 
     public void setBarChart(List<Integer> countingArray, BarCssRule barCssRule) {
         // Clear the chart

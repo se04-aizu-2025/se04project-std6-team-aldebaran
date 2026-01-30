@@ -5,6 +5,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.chart.BarChart;
 import java.util.Arrays;
 import javafx.scene.control.Label;
+import javafx.animation.Animation;
+import javafx.animation.SequentialTransition;
+import javafx.application.Platform;
+import com.aldebaran.stellasort.component.ArrayBarChart;
+import com.aldebaran.stellasort.animation.ArrayBarChartAnimator;
+import com.aldebaran.stellasort.service.SortListener;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import com.aldebaran.stellasort.service.BubbleSort;
+
 
 public class SortTabController {
 
@@ -15,6 +25,38 @@ public class SortTabController {
 	@FXML private Label statusLabel;
 	@FXML private Label throughLabel;
 	
+	private ArrayBarChart arrayBarChart;
+	private ArrayBarChartAnimator animator;
+	private SequentialTransition queue = new SequentialTransition();
+
+
+	
+	SortListener listener = new SortListener() {
+
+		@Override
+		public void onCompare(int i, int j, int a, int b) {
+			Platform.runLater(() -> {
+				queue.getChildren().add(animator.changeBarValue(i, a, a));
+			});
+		}
+
+		@Override
+		public void onSwap(int i, int j, int a, int b) {
+			Platform.runLater(() -> {
+				queue.getChildren().add(animator.changeBarValue(i, a, b));
+				queue.getChildren().add(animator.changeBarValue(j, b, a));
+			});
+		}
+	};
+	
+	@FXML
+	public void initialize() {
+		arrayBarChart = new ArrayBarChart(arrayBarChartNode);
+		animator = new ArrayBarChartAnimator(arrayBarChart);
+	
+		arrayBarChart.initializeBarChart();
+	}
+	
 	private int[] array;
 	
     public void setAlgorithm(SortAlgorithm algorithm) {
@@ -22,14 +64,21 @@ public class SortTabController {
     }
 
     @FXML
-    private void onSort() {
-        switch (algorithm) {
-            case BUBBLE -> {}
-            case COUNTING -> {}
-            case HEAP -> {}
-            case QUICK -> {}
-        }
-    }
+	private void onSort() {
+		if (array == null || array.length == 0) {
+			statusLabel.setText("No array input");
+			return;
+		}
+
+		queue.getChildren().clear();
+
+		switch (algorithm) {
+			case BUBBLE -> runBubble();
+			case COUNTING -> runCounting();
+			case HEAP -> runHeap();
+			case QUICK -> runQuick();
+		}
+	}
 	
 	@FXML
 	private void onRandomize() {
@@ -46,12 +95,60 @@ public class SortTabController {
 					  
 		statusLabel.setText("");
 		throughLabel.setText("Array Primed");
+		
+		arrayBarChart.setBarChart(Arrays.stream(array).boxed().toList(), ArrayBarChart.NO_RULE);
+		
+		int max = Arrays.stream(array).max().orElse(1);
+		arrayBarChart.setYBounds(0, max);
 
     } catch (Exception e) {
         statusLabel.setText("Invalid input");
 		throughLabel.setText("");
     }
 }
+	
+	private void runBubble() {
+		if (array == null || array.length == 0) return;
+
+		statusLabel.setText("Sorting...");
+
+		queue.stop();
+		queue.getChildren().clear();
+		statusLabel.setText("Sorting...");
+
+		Service<Void> service = new Service<>() {
+			@Override
+			protected Task<Void> createTask() {
+				return new Task<>() {
+					@Override
+					protected Void call() {
+						BubbleSort.sort(array, listener);
+						return null;
+					}
+				};
+			}
+		};
+
+		service.setOnSucceeded(e -> {
+			queue.play();
+			statusLabel.setText("Done");
+		});
+
+		service.start();
+	}
+	
+	private void runCounting() {
+		
+	}
+	
+	
+	private void runHeap() {
+		
+	}
+	
+	private void runQuick() {
+		
+	}
 	
 	
 }
