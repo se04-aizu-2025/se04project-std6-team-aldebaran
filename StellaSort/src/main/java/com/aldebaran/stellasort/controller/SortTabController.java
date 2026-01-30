@@ -13,6 +13,7 @@ public class SortTabController {
 	@FXML private TextArea inputArea;
     @FXML private BarChart<String, Number> arrayBarChartNode;
 	@FXML private Label statusLabel;
+	@FXML private Label throughLabel;
 	
 	private int[] array;
 	
@@ -44,9 +45,11 @@ public class SortTabController {
                       .toArray();
 					  
 		statusLabel.setText("");
+		throughLabel.setText("Array Primed");
 
     } catch (Exception e) {
         statusLabel.setText("Invalid input");
+		throughLabel.setText("");
     }
 }
 	

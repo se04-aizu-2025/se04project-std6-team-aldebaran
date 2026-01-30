@@ -59,6 +59,7 @@
                   </TextFlow>
 				  <Label fx:id="statusLabel" layoutX="35.0" layoutY="130.0" textFill="red" text="" />
                   <Button fx:id="inputBtn" layoutX="168.0" layoutY="142.0" mnemonicParsing="false" text="Input Array" onAction="#onInputArray"/>
+				  <Label fx:id="throughLabel" layoutX="250.0" layoutY="150.0" textFill="green" text="" />
                </children>
             </AnchorPane>
          </items>
