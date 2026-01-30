@@ -17,6 +17,7 @@ import javafx.concurrent.Task;
 import com.aldebaran.stellasort.service.BubbleSort;
 import com.aldebaran.stellasort.service.QuickSort;
 import com.aldebaran.stellasort.component.PlayButton;
+import com.aldebaran.stellasort.service.RandomArrayGenerator;
 
 public class SortTabController {
 
@@ -128,7 +129,20 @@ public class SortTabController {
 	
 	@FXML
 	private void onRandomize() {
-	
+		RandomArrayGenerator generator = new RandomArrayGenerator(
+				20, 0, 100,
+				array -> {
+					this.array = array;
+					Platform.runLater(() -> {
+						inputArea.setText(Arrays.toString(array).replaceAll("[\\[\\]]", ""));
+						arrayBarChart.setBarChart(Arrays.stream(array).boxed().toList(), ArrayBarChart.NO_RULE);
+						arrayBarChart.setYBounds(0, Arrays.stream(array).max().orElse(100));
+						throughLabel.setText("Random array generated");
+					});
+				}
+		);
+
+		generator.generate();
 	}
 	
 	@FXML
