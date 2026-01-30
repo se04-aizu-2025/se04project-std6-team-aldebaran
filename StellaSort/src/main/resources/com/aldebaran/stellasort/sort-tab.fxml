@@ -39,7 +39,7 @@
 								</ImageView>
 							</graphic>
 						</Button>
-					
+						<Label fx:id="infoLabel" text="" wrapText="true" style="-fx-font-size: 14px; -fx-text-fill: black;" maxWidth="300" />
                </children>
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">

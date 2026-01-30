@@ -17,7 +17,6 @@ import javafx.concurrent.Task;
 import com.aldebaran.stellasort.service.BubbleSort;
 import com.aldebaran.stellasort.service.QuickSort;
 import com.aldebaran.stellasort.component.PlayButton;
-import com.aldebaran.stellasort.service.RandomArrayGenerator;
 
 public class SortTabController {
 
@@ -27,6 +26,7 @@ public class SortTabController {
     @FXML private BarChart<String, Number> arrayBarChartNode;
 	@FXML private Label statusLabel;
 	@FXML private Label throughLabel;
+	@FXML private Label infoLabel;
 	@FXML private Button sortBtn;
 
 
@@ -82,12 +82,19 @@ public class SortTabController {
 		arrayBarChart.initializeBarChart();
 		
 		playButton = new PlayButton(sortBtn);
+		
 	}
 	
 	private int[] array;
 	
     public void setAlgorithm(SortAlgorithm algorithm) {
         this.algorithm = algorithm;
+		switch (algorithm) {
+					case BUBBLE -> infoLabel.setText("BubbleSort is a simple algorithm that compares neighboring elements to decide a swap, looping through the array until it no longer needs to swap anything. It has a time complexity of O(n^2)");
+					case QUICK -> infoLabel.setText("QuickSort");
+					case COUNTING -> {}
+					case HEAP -> {}
+				}
     }
 
     @FXML
@@ -121,20 +128,7 @@ public class SortTabController {
 	
 	@FXML
 	private void onRandomize() {
-			RandomArrayGenerator generator = new RandomArrayGenerator(
-			20, 0, 100,
-			array -> {
-				this.array = array;
-				Platform.runLater(() -> {
-					inputArea.setText(Arrays.toString(array).replaceAll("[\\[\\]]", ""));
-					arrayBarChart.setBarChart(Arrays.stream(array).boxed().toList(), ArrayBarChart.NO_RULE);
-					arrayBarChart.setYBounds(0, Arrays.stream(array).max().orElse(100));
-					throughLabel.setText("Random array generated");
-				});
-			}
-		);
-
-		generator.generate();
+	
 	}
 	
 	@FXML
